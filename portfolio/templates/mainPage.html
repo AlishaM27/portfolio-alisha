@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+{% load static %}
+<head>
+<link rel="icon" href="{% static 'Icon.png' %}"/>
+<title>Alisha's Portfolio</title>
+
+<!-- <link rel="stylesheet" href="style.css"> -->
+<style>
+a:link{
+	color: #9463A1;
+}
+
+a:hover{
+	color: white;
+}
+
+a:visited{
+	color: #7354C3;
+}
+
+.n {
+  display: inline;
+}
+
+.divide2 {
+	width: 50%;
+	height: 50%;
+	color: white;
+}
+
+li a{
+	color: white;
+}
+
+logo{
+	font-family: "courier";
+}
+
+.title{
+	background-image: url("{% static 'Title image.png' %}");
+	width: 100%;
+	background-attachment: fixed;
+	background-position: center;
+	height: 80vh;
+	color: white;
+	margin-top: 50px;
+	padding: 170px 20px;
+	text-align: center;
+	text-shadow: 5px 5px 10px #1B0F2A;
+}
+
+h1{
+	font-size: 50px;
+	font-family: "Georgia";
+	color: #1E1825;
+	line-height: 300%;
+}
+
+h2{
+	font-size: 25px;
+	font-style: italic;
+	color: #9463A1;
+}
+
+.info {
+	color: white;
+	text-align: center;
+	margin: 20px;
+	padding: 30px 20px;
+	height: auto;
+	background-color: #52445B;
+	margin: 150px 50px;
+}
+
+hr{
+	background-color: #676277;
+}
+
+.even{
+	text-align:center;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.proj{
+	border:1px solid #676277;
+	width: 100%;
+	background-color:#373343;
+}
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th img{
+	height: 40px;
+}
+
+.even td{
+	width: 30%;
+	padding: 0px 10px;
+	//text-align: justify;
+}
+</style>
+
+</head>
+
+<body style="background-color:#373343;">
+
+<!-- Navigation bar -->
+<div style="background-color:#1E1825; position:fixed; width:100%; top:0; padding-top:10px; z-index:2;">
+
+  <!--	Bar divided into two, to have text on the left most and right most side at the same time	-->
+  <!-- icon and name side -->
+  <div class="divide2" style="float:left; font-family:Courier;">
+	&nbsp; &nbsp;
+	<img src="{% static 'Icon.png' %}" height="40px" width="40px">
+	Alisha's Portfolio
+  </div>
+  <!-- Links side -->
+  <div class="divide2" style="float:right; text-align:right;">
+	<ul>
+		<li class="n"><a href="#Education">Education</a> &nbsp; &nbsp;</li>
+		<li class="n"><a href="#Skills">Skills</a> &nbsp; &nbsp;</li>
+		<li class="n"><a href="#Experience">Experience</a> &nbsp; &nbsp;</li>
+		<li class="n"><a href="#Project">Project</a> &nbsp; &nbsp;</li>
+		<li class="n"><a href="#Contact">Contact</a> &nbsp; &nbsp;</li>
+	</ul>
+  </div>
+</div>
+
+<!--	Title image and text	-->
+<div class="title">
+	<h1 style="color: white; line-height: normal;">Hi, I'm {{ intro.Name }}</h1>
+	<h2>A {{ intro.Occ1 }} and a {{ intro.Occ2 }}</h2>
+	<br><br>
+	<h3 style="color: #7354C3;">{{ intro.Tagline }}</h3>
+	<p> <a href="https://github.com/AlishaM27" target="_BLANK">Github</a> &nbsp; &nbsp; &nbsp; &nbsp; |  &nbsp; &nbsp; &nbsp; &nbsp; <a href="https://pk.linkedin.com/in/alisha-masood-7b0513297" target="_BLANK">LinkedIn</a></p>
+</div>
+
+<!-- table for education -->
+<div class="info" id="Education">
+	<h1>Education</h1>
+	<table class="even">
+		<tr>
+			<th> <img src="{% static 'umt.png' %}"/> </th>
+			<th> <img src="{% static 'pgc.png' %}"/> </th>
+			<th> <img src="{% static 'pisr.png' %}"/> </th>
+		</tr>
+		<tr>
+			{% for degree in edu.e %}
+			<th>{{ degree.level }}</th>
+			{% endfor %}
+		</tr>
+		<tr>
+			{% for school in edu.e %}
+			<td>{{ school.name }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			{% for deg in edu.e %}
+			<td>{{ deg.degree }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			{% for duration in edu.e %}
+			<td>{{ duration.year }}</td>
+			{% endfor %}
+		</tr>
+
+	</table>
+</div>
+
+<!-- Skill section -->
+<div class="info" id="Skills">
+	<h1>Skills</h1>
+
+	<table class="even">
+	<tr>
+		<th> <img src="{% static 'program.png' %}"/> </th>
+		<th> <img src="{% static 'htmlcss.png' %}"/> </th>
+		<th> <img src="{% static 'mining.png' %}"/> </th>
+	</tr>
+	<tr>
+		{% for description in skill.skill1 %}
+		<td>{{ description.disc }}</td>
+		{% endfor %}
+	</tr>
+	</table>
+</div>
+
+<!-- experience section -->
+<div class="info" id="Experience">
+	<h1>Experience</h1>
+
+	<table class="even">
+	<tr>
+		<th> <img src="{% static 'medal.png' %}"/> </th>
+		<th> <img src="{% static 'certificate.png' %}"/> </th>
+		<th> <img src="{% static 'project.png' %}"/> </th>
+	</tr>
+	<tr>
+		{% for achievements in experience.exper %}
+		<td> {{ achievements.achieve }} </td>
+		{% endfor %}
+	</tr>
+	</table>
+</div>
+
+<!-- Project section -->
+<div class="info" id="Project">
+	<h1>Project</h1>
+
+	<table class="even">
+	<tr>
+		<th> <img src="{% static 'ludo.png' %}"/> </th>
+		<th> <img src="{% static 'arduino.png' %}"/> </th>
+		<th> <img src="{% static 'weather.png' %}"/> </th>
+	</tr>
+	<tr>
+		{% for examples in pro.p %}
+		<th> {{ examples.name }}</th>
+		{% endfor %}
+	</tr>
+	<tr>
+		{% for examples in pro.p %}
+		<td>{{ examples.disc }}</td>
+		{% endfor %}
+	</tr>
+	</table>
+</div>
+
+<!-- Contact Form section -->
+<div class="info" id="Contact">
+	<h1>Contact Form</h1>
+	<table>
+	<form method="post" action="{% url 'messages' %}">
+		{% csrf_token %}
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" id="name" size="50" name="name"/></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><input type="email" id="email" size="50" name="email"/></td>
+		</tr>
+		<tr>
+			<td>Message:</td>
+			<td><textarea rows="3" cols="48" name="message" style="resize: none;"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:right;"><input type="submit" id="submit"></td>
+		</tr>
+	</form>
+	</table>
+</div>
+
+<!--	Fixes the redirection scroll issue where any in-page anchor's redirect gets hidden under navbar	-->
+<script>
+	window.addEventListener('hashchange', function() {
+		window.scrollBy(0, -100);
+	});
+</script>
+</body>
+</html>
